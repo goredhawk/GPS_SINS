@@ -1,6 +1,7 @@
 %计算磁力计获得初始姿态角
 
- DATA=importdata('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\INS_Static2-000.txt');
+%  DATA=importdata('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\INS_Static2-000.txt');
+DATA=importdata('F:\定位\Git-SINS-Branch\GPS_SINS\初始对准\静态采集数据\south-000.txt');
 N=size(DATA.data,1);%行数
 t1=0.01:0.01:N*0.01;
 t1=t1';
@@ -27,7 +28,7 @@ roll=asin(-Acc_X/g/cos(pitch));
 
 Cbh=[cos(roll) 0 sin(roll);sin(pitch)*sin(roll)  cos(pitch) -sin(pitch)*cos(roll);-cos(pitch)*sin(roll)  sin(pitch) cos(pitch)*cos(roll) ];
 Mag_h=Cbh*[Mag_X Mag_Y Mag_Z]';
-yaw=atan((Mag_h(1,1)*cos(a)-Mag_h(2,1)*sin(a))/((Mag_h(1,1))*sin(a)+Mag_h(2,1)*cos(a)));
+yaw=atan((Mag_h(1,1)*cos(a)-Mag_h(2,1)*sin(a))/((Mag_h(1,1))*sin(a)+Mag_h(2,1)*cos(a)))*180/pi;
 %方法二：
 % C3=[Acc_X/g,Acc_Y/g,Acc_Z/g];
 % temp=sqrt((Acc_Y/g)^2+(Acc_Z/g)^2);
