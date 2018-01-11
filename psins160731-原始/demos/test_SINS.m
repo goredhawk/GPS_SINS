@@ -14,6 +14,6 @@ davp0 = avpseterr([30;30;10], 0.1, [10;10;10]);
 avp00 = avpadderr(trj.avp0, davp0);
 trj = bhsimu(trj, 1, 10, 3, 1);
 avp = inspure(imu, avp00, trj.bh);  % pure inertial navigation
-avperr = avpcmp(avp, trj.avp);
-inserrplot(avperr)
+% avperr = avpcmp(avp, trj.avp);
+% inserrplot(avperr)
 profile viewer

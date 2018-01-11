@@ -7,7 +7,7 @@
 clear all
 glvs
 ts = 0.01;       % sampling interval
-avp0 = avpset([0;0;0], 0, glv.pos0); % init avp
+avp0 = avpset([0;0;90], 0, glv.pos0); % init avp
 % trajectory segment setting
 xxx = [];
 seg = trjsegment(xxx, 'init',         0);

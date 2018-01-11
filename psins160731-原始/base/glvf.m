@@ -26,7 +26,7 @@ global glv
     glv.ep = sqrt(glv.Re^2-glv.Rp^2)/glv.Rp; glv.ep2 = glv.ep^2; % 2nd eccentricity
     glv.wie = wie;                  % the Earth's angular rate
     glv.meru = glv.wie/1000;        % milli earth rate unit
-    glv.g0 = 9.7803267714;          % gravitational force
+    glv.g0 = 9.7883267714;          % gravitational force
     glv.mg = 1.0e-3*glv.g0;         % milli g
     glv.ug = 1.0e-6*glv.g0;         % micro g
     glv.mGal = 1.0e-3*0.01;         % milli Gal = 1cm/s^2 ~= 1.0E-6*g0
@@ -64,7 +64,9 @@ global glv
     glv.v0 = [0;0;0];    % 3x1 zero-vector
     glv.qI = [1;0;0;0];  % identity quaternion
     glv.I33 = eye(3); glv.o33 = zeros(3);  % identity & zero 3x3 matrices
-    glv.pos0 = [34.246048*glv.deg; 108.909664*glv.deg; 380]; % position of INS Lab@NWPU
+% glv.pos0 = [34.246048*glv.deg; 108.909664*glv.deg; 380]; % position of INS Lab@NWPU
+%利用实际数据
+    glv.pos0 = getALH();
     glv.eth = []; glv.eth = earth(glv.pos0);
     %%
     [glv.rootpath, glv.datapath, glv.mytestflag] = psinsenvi;

@@ -1,4 +1,4 @@
- stm32=textread('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\GPS_Static2.txt','%s')';
+ stm32=textread('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\GPS_sport2.txt','%s')';
 
 n=size(stm32,2);%列数
 h=n/27;
@@ -23,7 +23,7 @@ stm32_data.gps(:,2)=smooth(stm32_data.gps(:,2),'rlowess');
 figure(1)
 % plot(0, 0, 'rp');   
 % hold on, 
-%plot(stm32_data.gps(:,1), stm32_data.gps(:,2)); 
+% plot(stm32_data.gps(:,1), stm32_data.gps(:,2)); 
 plot((stm32_data.gps(:,2)-stm32_data.gps(1,2))*Re*cos(stm32_data.gps(1,1)*pi/180), (stm32_data.gps(:,1)-stm32_data.gps(1,1))*Re*pi/180); xygo('est', 'nth');
 % scatter(stm32_data.gps(:,1),stm32_data.gps(:,2),'k*');
 title('轨迹');

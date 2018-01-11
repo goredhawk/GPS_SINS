@@ -1,7 +1,6 @@
-
-% stm32=textread('F:\定位\Git-SINS-Branch\GPS_SINS\6.20大学城数据采集\第一次采集\第一次跑车静止采集GPS.txt','%s')';
- stm32=textread('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\GPS_Static2.txt','%s')';
-
+%获得初始GPS的均值，经度和纬度为弧度，高度单位为m
+function GPS= getALH()
+stm32=textread('F:\定位\Git-SINS-Branch\GPS_SINS\6.21华工数据采集\GPS_Static2.txt','%s')';
 n=size(stm32,2);%列数
 h=n/27;
 Re=6378137;
@@ -21,15 +20,7 @@ for i=2:27:n
  
 stm32_data.gps(:,1)=smooth(stm32_data.gps(:,1),'rlowess');
 stm32_data.gps(:,2)=smooth(stm32_data.gps(:,2),'rlowess');
- 
-figure(1)
-% plot(0, 0, 'rp');   
-% hold on, 
-%plot(stm32_data.gps(:,1), stm32_data.gps(:,2)); 
-plot((stm32_data.gps(:,2)-stm32_data.gps(1,2))*Re*cos(stm32_data.gps(1,1)*pi/180), (stm32_data.gps(:,1)-stm32_data.gps(1,1))*Re*pi/180); xygo('est', 'nth');
-% scatter(stm32_data.gps(:,1),stm32_data.gps(:,2),'k*');
-title('轨迹');
-figure(2)
-plot(t,stm32_data.gps(:,3));
-%scatter(stm32_data.gps(:,1),stm32_data.gps(:,2),'k*');
-title('高度');
+lat=mean(stm32_data.gps(:,2))*pi/180;
+long=mean(stm32_data.gps(:,1))*pi/180;
+high = mean(stm32_data.gps(:,3));
+GPS = [lat, long , high] ;
